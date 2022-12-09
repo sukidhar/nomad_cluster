@@ -46,7 +46,7 @@ defmodule NomadCluster.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:libcluster_consul, "~> 1.0.0"}
+      {:libcluster, "~> 3.3"}
     ]
   end
 

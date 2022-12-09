@@ -8,8 +8,6 @@ defmodule NomadCluster.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {Cluster.Supervisor,
-       [Application.get_env(:libcluster, :topologies), [name: NomadCluster.ClusterSupervisor]]},
       # Start the Telemetry supervisor
       NomadClusterWeb.Telemetry,
       # Start the PubSub system

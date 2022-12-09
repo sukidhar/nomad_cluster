@@ -14,66 +14,6 @@ config :nomad_cluster, NomadClusterWeb.Endpoint,
   pubsub_server: NomadCluster.PubSub,
   live_view: [signing_salt: "lR3lA8Qe"]
 
-config :libcluster,
-  topologies: [
-    consul_example: [
-      strategy: Cluster.Strategy.Consul,
-      config: [
-        # The base agent URL.
-        base_url: "http://172.16.1.101:8500",
-
-        # Nodes list will be refreshed using Consul on each interval (in µs).
-        # Defaults to 5 seconds.
-        polling_interval: 10_000,
-
-        # The Consul endpoints used to fetch service nodes.
-        list_using: [
-          # If you want to use the Agent HTTP API as specified in
-          # https://www.consul.io/api/agent.html
-          # Cluster.Strategy.Consul.Agent
-
-          # If you want to use the Health HTTP Endpoint as specified in
-          # https://www.consul.io/api/health.html
-          # {Cluster.Strategy.Consul.Health, [passing: true]},
-
-          # If you want to use the Catalog HTTP API as specified in
-          # https://www.consul.io/api/catalog.html
-          Cluster.Strategy.Consul.Catalog
-
-          # # If you want to join nodes from multiple datacenters, do:
-          # {Cluster.Strategy.Consul.Multisite, [
-          #   datacenters: ["dc1", "dc2", "dc3", ...],
-          #   endpoints: [
-          #     ... further endpoints ...
-          #   ]
-          # ]},
-
-          # # You can also list all datacenters:
-          # {Cluster.Strategy.Consul.Multisite, [
-          #   datacenters: :all,
-          #   endpoints: [
-          #     ... further endpoints ...
-          #   ]
-          # ]},
-        ],
-
-        # All configurations below are defined as default for all
-        # children endpoints.
-
-        # Datacenter parameter while querying.
-        dc: "toronto",
-
-        # The default service_name for children endpoints specifications.
-        service_name: "ex-app",
-
-        # This is the node basename, the Name (first) part of an Erlang
-        # node name (before the @ part. If not specified, it will assume
-        # the same name as the current running node.
-        node_basename: "ex_app"
-      ]
-    ]
-  ]
-
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
